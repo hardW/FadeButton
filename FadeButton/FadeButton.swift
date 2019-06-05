@@ -152,11 +152,11 @@ extension FadeButton {
     
     fileprivate func fadeOutOverlays() {
         let duration = TimeInterval(exactly: self.fadeDuration)!
-        UIView.animate(withDuration: duration) {
+		UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
             self.overlayBackgroundImage.alpha = 0
             self.overlayImage.alpha = 0
             self.overlayLabel.alpha = 0
-        }
+        })
     }
     
 }
