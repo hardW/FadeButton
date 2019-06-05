@@ -44,7 +44,6 @@ open class FadeButton: UIButton {
         self.configureOverlayBackgroundImage()
         self.configureOverlayImage()
         self.configureOverlayLabel()
-				fadeDuration = 0.5
     }
 
 }
@@ -100,15 +99,21 @@ extension FadeButton {
 // MARK: - Configurations
 
 extension FadeButton {
-    
+	
     fileprivate func configureOverlayBackgroundImage() {
         self.overlayBackgroundImage?.removeFromSuperview()
-        let image = UIImageView(image: self.backgroundImage(for: .highlighted))
-        image.frame = CGRect(origin: .zero, size: self.frame.size)
-        image.alpha = self.isHighlighted ? 1 : 0
-        self.overlayBackgroundImage = image
+        let imageView = UIImageView(image: self.backgroundImage(for: .highlighted))
+        imageView.alpha = self.isHighlighted ? 1 : 0
+        self.overlayBackgroundImage = imageView
         self.addSubview(self.overlayBackgroundImage)
-    }
+		imageView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			self.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 0),
+			self.widthAnchor.constraint(equalTo: imageView.widthAnchor, constant: 0),
+			self.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 0),
+			self.heightAnchor.constraint(equalTo: imageView.heightAnchor, constant: 0)
+		])
+	}
     
     fileprivate func configureOverlayImage() {
         guard let imageView = self.imageView else { return }
