@@ -147,7 +147,7 @@ extension FadeButton {
     
     fileprivate func fadeOutOverlays() {
         let duration = TimeInterval(exactly: self.fadeDuration)!
-        UIView.animate(withDuration: duration) { animations in
+        UIView.animate(withDuration: duration) {
             self.overlayBackgroundImage.alpha = 0
             self.overlayImage.alpha = 0
             self.overlayLabel.alpha = 0
