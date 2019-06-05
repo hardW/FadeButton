@@ -25,8 +25,16 @@ open class FadeButton: UIButton {
         super.awakeFromNib()
         self.configureOverlays()
     }
-    
-    // MARK: - Private
+	
+		override init(frame: CGRect) {
+				super.init(frame: frame)
+				configureOverlays()
+		}
+	
+		required public init?(coder aDecoder: NSCoder) {
+				super.init(coder: aDecoder)
+		}
+		// MARK: - Private
     
     fileprivate var overlayBackgroundImage: UIImageView!
     fileprivate var overlayImage: UIImageView!
@@ -36,6 +44,7 @@ open class FadeButton: UIButton {
         self.configureOverlayBackgroundImage()
         self.configureOverlayImage()
         self.configureOverlayLabel()
+				fadeDuration = 0.5
     }
 
 }
